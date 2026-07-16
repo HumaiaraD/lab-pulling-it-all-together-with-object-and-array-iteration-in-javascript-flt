@@ -215,3 +215,62 @@ function bigShoeRebounds(){
     return rebounds;
 }
 
+function mostPointsScored() {
+    const game = gameObject();
+
+    let highestPoints = 0;
+    
+    for (const player in game.home.players){
+        if (game.home.players.points > highestPoints){
+            highestPoints = game.home.players[player].points
+        }
+    }
+    for (const player in game.away.players){
+        if (game.away.players.points > highestPoints){
+            highestPoints = game.away.players[player].points
+        }
+    }
+    return highestPoints;
+}
+
+function winningTeam() {
+    const game = gameObject();
+
+    homeTotalPoints = 0;
+    awayTotalPoints = 0;
+
+    for (const player in game.home.players){
+        homeTotalPoints += game.home.players[player].points;
+    }
+    for (const player in game.away.players){
+        awayTotalPoints += game.away.players[player].points;
+    }
+
+    if (homeTotalPoints > awayTotalPoints){
+        return game.home.teamName;
+    } else if (homeTotalPoints < awayTotalPoints){
+        return game.away.teamName;
+    } else {
+        return "Tie";
+    }
+
+}
+
+function playerWithLongestName(){
+    const game = gameObject();
+
+    longestName = "";
+
+    for (const player in game.home.players){
+        if (player.length > longestName.length){
+            longestName = player;
+        }
+    }
+    for (const player in game.away.players){
+        if (player.length > longestName.length){
+            longestName = player;
+        }
+    }
+
+    return longestName;
+}
